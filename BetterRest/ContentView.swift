@@ -28,38 +28,31 @@ struct ContentView: View {
         NavigationView {
             Form {
                 /// Challenge 1:
-                Section {
+                /// We can move the header's content straight into Section if we only pass text in:
+                Section("When do you want to wake up?") {
                     DatePicker("Please enter a time:", selection: $wakeUp, displayedComponents: .hourAndMinute)
                         .labelsHidden()
-                } header: {
-                    Text("When do you want to wake up?")
                 }
                 
                 /// Challenge 1:
-                Section {
+                Section("Desired amount of sleep:") {
                     Stepper("\(sleepAmount.formatted()) hours", value: $sleepAmount, in: 4...12, step: 0.25)
-                } header: {
-                    Text("Desired amount of sleep:")
                 }
                 
                 /// Challenge 1:
-                Section {
+                Section("Daily coffee intake:") {
                     /// Challenge 2:
                     Picker("Number of cups:", selection: $coffeeAmount) {
                         ForEach(0 ..< 21) {
                             Text("\($0)")
                         }
                     }
-                } header: {
-                    Text("Daily coffee intake:")
                 }
                 
                 /// Challenge 3:
-                Section {
+                Section("Your recommended bedtime:") {
                     Text("\(calculateBedtime())")
                         .font(.largeTitle)
-                } header: {
-                    Text("Your recommended bedtime:")
                 }
             }
             .navigationTitle("BetterRest")
